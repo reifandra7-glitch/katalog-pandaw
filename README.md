@@ -78,3 +78,11 @@ Urutan yang disarankan: US-01, US-02, US-03, US-04, US-05, US-06, lalu fitur bon
 - **Pembuat: Reifandra**
 - **Link aplikasi:https://katalog-pandaw-m7qk6oyhg-reifandra7-glitch.vercel.app**
 - **Fitur bonus yang dikerjakan:**
+  - US-07: List produk di halaman admin dari database
+  - US-08: Tambah produk (terkunci login)
+  - US-09: Ubah produk (terkunci login)
+  - US-10: Hapus produk (terkunci login dengan konfirmasi)
+  - US-11: Filter kategori dan pencarian produk
+  - US-12: Pilih jumlah atau varian sebelum pesan via WhatsApp
+  - US-13: Progressive Web App (PWA) bisa di-install di HP
+  - US-14: Deskripsi produk dibuat otomatis dengan AI (Google Gemini)
