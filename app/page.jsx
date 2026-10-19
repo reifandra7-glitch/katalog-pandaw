@@ -1,9 +1,11 @@
-import KartuProduk from "@/components/KartuProduk";
 import { toko } from "@/lib/toko";
 import { buatSupabaseServer } from "@/lib/supabase";
+import KatalogPublik from "@/components/KatalogPublik";
 
 // US-01: data produk diambil dari tabel "produk" di Supabase, di sisi server.
-export default async function HalamanKatalog() {
+// US-11: filter kategori dan pencarian produk pada halaman katalog publik.
+export default async function HalamanKatalog({ searchParams }) {
+  const sp = searchParams ? await searchParams : {};
   let daftarProduk = [];
   let errorPesan = null;
 
@@ -11,7 +13,7 @@ export default async function HalamanKatalog() {
     const supabase = buatSupabaseServer();
     const { data, error } = await supabase
       .from("produk")
-      .select("id, nama, harga, foto_url, kategori")
+      .select("id, nama, harga, deskripsi, foto_url, kategori")
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -45,13 +47,14 @@ export default async function HalamanKatalog() {
         ) : daftarProduk.length === 0 ? (
           <p className="text-teks-lembut">Belum ada produk.</p>
         ) : (
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-            {daftarProduk.map((produk) => (
-              <KartuProduk key={produk.id} produk={produk} />
-            ))}
-          </div>
+          <KatalogPublik
+            daftarProduk={daftarProduk}
+            initialCari={sp.cari || ""}
+            initialKategori={sp.kategori || ""}
+          />
         )}
       </section>
     </>
   );
 }
+

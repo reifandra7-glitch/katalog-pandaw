@@ -9,9 +9,11 @@ export default async function HalamanDetailProduk({ params }) {
   const { id } = await params;
 
   const supabase = buatSupabaseServer();
+  // US-02: data produk diambil dari tabel "produk" di Supabase berdasarkan id.
+  // US-12: data diteruskan ke TombolWhatsApp untuk pemilihan jumlah / varian.
   const { data: produk } = await supabase
     .from("produk")
-    .select("id, nama, harga, deskripsi, foto_url, kategori")
+    .select("*")
     .eq("id", id)
     .single();
 
